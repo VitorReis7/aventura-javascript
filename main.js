@@ -69,12 +69,14 @@ function ataqueInimigo() {
 
 function recuar(inimigo) {
     const chanceDeRecuo = Math.random();
+    let maisVida = 2;
 
     if (chanceDeRecuo > 0.5) {
         console.log(`Você recua com sucesso, recuperando fôlego!`);
         heroi.energia -= 10;
-        heroi.vida += 20;
+        heroi.vida += 30 + maisVida;
         console.log(`Sua vida agora é ${heroi.vida} e sua energia agora é ${heroi.energia}.`);
+        maisVida += 2;
     } else {
         console.log(`Você tenta recuar, mas tropeça na areia! ${inimigo.nome} aproveita a oportunidade e ataca!`);
         heroi.vida -= inimigo.ataqueBasico;
