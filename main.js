@@ -10,7 +10,7 @@ const heroi = {
 const inimigos = [
     { nome: "Treinador Exigente", vida: 80, ataqueBasico: 15, ataqueForte: 30, energia: 50, maxEnergia: 50, custoEnergiaForte: 20 },
     { nome: "Adversário Fortão", vida: 120, ataqueBasico: 25, ataqueForte: 40, energia: 60, maxEnergia: 60, custoEnergiaForte: 25 },
-    { nome: "Juiz Rigoroso", vida: 100, ataqueBasico: 30, ataqueForte: 50, energia: 70, maxEnergia: 70, custoEnergiaForte: 30 }
+    { nome: "Enzurg", vida: 100, ataqueBasico: 30, ataqueForte: 50, energia: 70, maxEnergia: 70, custoEnergiaForte: 30 }
 ];
 
 function mostrarStatus(personagem, inimigo) {
@@ -70,19 +70,17 @@ function ataqueInimigo() {
 function recuar(inimigo) {
     const chanceDeRecuo = Math.random();
     let maisVida = 2;
+    maisVida += 2;
 
     if (chanceDeRecuo > 0.5) {
         console.log(`Você recua com sucesso, recuperando fôlego!`);
         heroi.energia -= 10;
         heroi.vida += 30 + maisVida;
         console.log(`Sua vida agora é ${heroi.vida} e sua energia agora é ${heroi.energia}.`);
-        maisVida += 2;
     } else {
-        console.log(`Você tenta recuar, mas tropeça na areia! ${inimigo.nome} aproveita a oportunidade e ataca!`);
-        heroi.vida -= inimigo.ataqueBasico;
-        console.log(`Você leva ${inimigo.ataqueBasico} de dano! Sua vida agora é ${heroi.vida}.`);
+        console.log(`Você tenta prevenir o próximo ataque de ${inimigo.nome}, mas tropeça na areia! ${inimigo.nome} aproveita a oportunidade e ataca!`);
         heroi.energia -= 10;
-        console.log(`Sua vida agora é ${heroi.vida} e sua energia agora é ${heroi.energia}.`);
+        console.log(`Sua energia agora é ${heroi.energia}.`);
     }
 }
 
