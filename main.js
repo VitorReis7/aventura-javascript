@@ -8,15 +8,33 @@ function start() {
         maxEnergia: 100,
         custoEnergiaForte: 30
     };
-    const inimigos = [
-        { nome: "Treinador Exigente", vida: 80, ataqueBasico: 15, ataqueForte: 30, energia: 50, maxEnergia: 50, custoEnergiaForte: 20 },
-        { nome: "Adversário Fortão", vida: 120, ataqueBasico: 25, ataqueForte: 40, energia: 60, maxEnergia: 60, custoEnergiaForte: 25 },
-        { nome: "Enzurg", vida: 100, ataqueBasico: 30, ataqueForte: 50, energia: 70, maxEnergia: 70, custoEnergiaForte: 30 }
+    const inimigo = [
+        { nome: "Treinador Exigente", 
+            vida: 80, 
+            ataqueBasico: 15, 
+            ataqueForte: 30, 
+            energia: 50, 
+            maxEnergia: 50, 
+            custoEnergiaForte: 20 },
+        { nome: "Adversário Fortão", 
+            vida: 120, 
+            ataqueBasico: 25, 
+            ataqueForte: 40, 
+            energia: 60, 
+            maxEnergia: 60, 
+            custoEnergiaForte: 25},
+        { nome: "Enzurg", 
+            vida: 100, 
+            ataqueBasico: 30, 
+            ataqueForte: 50, 
+            energia: 70, 
+            maxEnergia: 70, 
+            custoEnergiaForte: 30}
     ];
 
-    function mostrarStatus(personagem, inimigo) {
+    function mostrarStatus(heroi, inimigo) {
         console.log(`--- Status do Herói ---`);
-        console.log(`Vida: ${personagem.vida} \nAtaque: ${personagem.ataqueBasico} \nAtaque Forte: ${personagem.ataqueForte} \nEnergia: ${personagem.energia}/${personagem.maxEnergia}`);
+        console.log(`Vida: ${heroi.vida} \nAtaque: ${heroi.ataqueBasico} \nAtaque Forte: ${heroi.ataqueForte} \nEnergia: ${heroi.energia}/${heroi.maxEnergia}`);
         console.log(`--- Status do Inimigo (${inimigo.nome}) ---`);
         console.log(`Vida: ${inimigo.vida} \nAtaque: ${inimigo.ataqueBasico} \nAtaque Forte: ${inimigo.ataqueForte} \nEnergia: ${inimigo.energia}/${inimigo.maxEnergia}`);
     }
@@ -24,7 +42,7 @@ function start() {
     function atacar(inimigo, ataque) {
         let dano;
         let mensagem;
-        let chanceDeFalha = Math.random();
+        let chanceFalha = Math.random();
 
         if (ataque === "basico") {
             dano = heroi.ataqueBasico;
@@ -38,7 +56,7 @@ function start() {
             return;
         }
 
-        if (chanceDeFalha > 0.2) {
+        if (chanceFalha > 0.2) {
             console.log(mensagem);
             inimigo.vida -= dano;
         } else {
@@ -47,11 +65,11 @@ function start() {
     }
 
     function ataqueInimigo() {
-        let chanceDeAtaqueForte = Math.random();
-        let chanceDeFalha = Math.random();
+        let chanceAtqForte = Math.random();
+        let chanceFalha = Math.random();
 
-        if (chanceDeAtaqueForte > 0.5 && inimigoAtual.energia >= inimigoAtual.custoEnergiaForte) {
-            if (chanceDeFalha > 0.3) {
+        if (chanceAtqForte > 0.5 && inimigoAtual.energia >= inimigoAtual.custoEnergiaForte) {
+            if (chanceFalha > 0.3) {
                 console.log(`${inimigoAtual.nome} realiza um ataque forte e causa ${inimigoAtual.ataqueForte} de dano!`);
                 heroi.vida -= inimigoAtual.ataqueForte;
                 inimigoAtual.energia -= inimigoAtual.custoEnergiaForte;
@@ -59,7 +77,7 @@ function start() {
                 console.log(`Você desvia do ataque forte de ${inimigoAtual.nome}!`);
             }
         } else {
-            if (chanceDeFalha > 0.2) {
+            if (chanceFalha > 0.2) {
                 console.log(`${inimigoAtual.nome} ataca com um golpe básico e causa ${inimigoAtual.ataqueBasico} de dano!`);
                 heroi.vida -= inimigoAtual.ataqueBasico;
             } else {
@@ -69,11 +87,11 @@ function start() {
     }
 
     function recuar(inimigo) {
-        const chanceDeRecuo = Math.random();
+        const chanceRecuo = Math.random();
         let maisVida = 2;
         maisVida += 2;
 
-        if (chanceDeRecuo > 0.5) {
+        if (chanceRecuo > 0.5) {
             console.log(`Você recua com sucesso, recuperando fôlego!`);
             heroi.energia -= 10;
             heroi.vida += 30 + maisVida;
@@ -85,7 +103,7 @@ function start() {
         }
     }
 
-    function regenerarEnergia(personagem) {
+    function regenEnergia(personagem) {
         personagem.energia += 10;
         if (personagem.energia > personagem.maxEnergia) {
             personagem.energia = personagem.maxEnergia;
@@ -103,8 +121,8 @@ function start() {
     mostrarIntroducao();
     alert("Bem-vindo ao RPG de Beach Tennis!");
     
-    for (let i = 0; i < inimigos.length; i++) {
-        inimigoAtual = inimigos[i];
+    for (let i = 0; i < inimigo.length; i++) {
+        inimigoAtual = inimigo[i];
         alert(`Você está enfrentando ${inimigoAtual.nome}!`);
         
         while (heroi.vida > 0 && inimigoAtual.vida > 0) {
@@ -129,8 +147,8 @@ function start() {
                 console.log(`${inimigoAtual.nome} foi derrotado!`);
             }
 
-            regenerarEnergia(heroi);
-            regenerarEnergia(inimigoAtual);
+            regenEnergia(heroi);
+            regenEnergia(inimigoAtual);
         }
 
         if (heroi.vida <= 0) {
