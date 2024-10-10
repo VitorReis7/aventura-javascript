@@ -21,15 +21,15 @@ function start() {
         console.log(`Vida: ${inimigo.vida} \nAtaque: ${inimigo.ataqueBasico} \nAtaque Forte: ${inimigo.ataqueForte} \nEnergia: ${inimigo.energia}/${inimigo.maxEnergia}`);
     }
 
-    function atacar(inimigo, tipoAtaque) {
+    function atacar(inimigo, ataque) {
         let dano;
         let mensagem;
         let chanceDeFalha = Math.random();
 
-        if (tipoAtaque === "basico") {
+        if (ataque === "basico") {
             dano = heroi.ataqueBasico;
             mensagem = `Você acerta ${inimigo.nome} com uma cortada rápida, causando ${dano} de dano!`;
-        } else if (tipoAtaque === "forte" && heroi.energia >= heroi.custoEnergiaForte) {
+        } else if (ataque === "forte" && heroi.energia >= heroi.custoEnergiaForte) {
             dano = heroi.ataqueForte;
             heroi.energia -= heroi.custoEnergiaForte;
             mensagem = `Você acerta ${inimigo.nome} com um smash poderoso, causando ${dano} de dano!`;
@@ -51,7 +51,7 @@ function start() {
         let chanceDeFalha = Math.random();
 
         if (chanceDeAtaqueForte > 0.5 && inimigoAtual.energia >= inimigoAtual.custoEnergiaForte) {
-            if (chanceDeFalha > 0.2) {
+            if (chanceDeFalha > 0.3) {
                 console.log(`${inimigoAtual.nome} realiza um ataque forte e causa ${inimigoAtual.ataqueForte} de dano!`);
                 heroi.vida -= inimigoAtual.ataqueForte;
                 inimigoAtual.energia -= inimigoAtual.custoEnergiaForte;
