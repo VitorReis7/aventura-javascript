@@ -141,10 +141,12 @@ function start() {
                 console.log("Escolha inválida.");
             }
 
-            if (inimigoAtual.vida > 0) {
-                ataqueInimigo();
-            } else {
-                console.log(`${inimigoAtual.nome} foi derrotado!`);
+            if (acao >= 1 || acao <= 3) {
+                if (inimigoAtual.vida > 0) {
+                    ataqueInimigo();
+                } else {
+                    console.log(`${inimigoAtual.nome} foi derrotado!`);
+                }
             }
 
             regenEnergia(heroi);
